@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FFF8FB">
+<title>Chirine · Plan 30 jours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF8FB;
+    --bg-soft: #FFEEF5;
+    --ink: #1F0F1F;
+    --mute: #8B7B85;
+    --pink: #FF2D7F;
+    --pink-soft: #FFD4E5;
+    --lilac: #B47BFF;
+    --blue: #7BB8FF;
+    --cream: #FFFCF7;
+    --glass: rgba(255, 255, 255, .55);
+    --glass-border: rgba(255, 45, 127, .12);
+    --shadow-pink: 0 20px 60px -20px rgba(255, 45, 127, .25);
+    --shadow-soft: 0 8px 30px -10px rgba(31, 15, 31, .08);
+    --grad-chrome: linear-gradient(135deg, #FF2D7F 0%, #B47BFF 50%, #7BB8FF 100%);
+    --grad-soft: linear-gradient(135deg, #FFE0EC 0%, #E8D9FF 100%);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+  }
+
+  /* Floating gradient orbs background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -20%; left: -30%;
+    width: 80vw; height: 80vw;
+    max-width: 600px; max-height: 600px;
+    background: radial-gradient(circle, rgba(255, 45, 127, .15), transparent 60%);
+    z-index: 0;
+    pointer-events: none;
+    animation: float1 18s ease-in-out infinite;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -20%; right: -30%;
+    width: 80vw; height: 80vw;
+    max-width: 600px; max-height: 600px;
+    background: radial-gradient(circle, rgba(180, 123, 255, .15), transparent 60%);
+    z-index: 0;
+    pointer-events: none;
+    animation: float2 22s ease-in-out infinite;
+  }
+  @keyframes float1 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(15%, 10%) scale(1.1); }
+  }
+  @keyframes float2 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(-10%, -15%) scale(1.15); }
+  }
+
+  .container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ====== HERO ====== */
+  .hero {
+    padding: 48px 0 32px;
+    text-align: left;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 24px;
+  }
+  .badge .dot {
+    width: 6px; height: 6px;
+    background: var(--pink);
+    border-radius: 50%;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .5; transform: scale(.8); }
+  }
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 13vw, 64px);
+    line-height: .95;
+    letter-spacing: -.03em;
+    margin-bottom: 14px;
+  }
+  .hero h1 .you {
+    font-style: italic;
+    background: var(--grad-chrome);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero .lead {
+    font-size: 16px;
+    color: var(--mute);
+    line-height: 1.55;
+    max-width: 360px;
+  }
+  .hero .lead strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ====== STATS ROW ====== */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 32px 0 40px;
+  }
+  .stat {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 18px 12px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+  }
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 36px;
+    line-height: 1;
+    background: var(--grad-chrome);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 4px;
+  }
+  .stat-lbl {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--mute);
+    font-weight: 600;
+  }
+
+  /* ====== SECTION ====== */
+  .section-head {
+    margin: 48px 0 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .section-head .nb {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--pink);
+  }
+  .section-head .title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .22em;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .section-head .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--glass-border), transparent);
+  }
+
+  /* ====== PHASE CARD ====== */
+  .phase {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    padding: 24px 22px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
+  }
+  .phase::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--grad-chrome);
+  }
+  .phase-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .phase-num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 52px;
+    line-height: 1;
+    background: var(--grad-chrome);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .phase-tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: var(--pink);
+    font-weight: 700;
+    background: var(--pink-soft);
+    padding: 6px 12px;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+  .phase-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -.01em;
+    margin-bottom: 6px;
+  }
+  .phase-title em {
+    font-style: italic;
+    color: var(--pink);
+  }
+  .phase-goal {
+    font-size: 14px;
+    color: var(--mute);
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+  .phase-goal strong { color: var(--ink); font-weight: 600; }
+
+  /* Tasks */
+  .task {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--glass-border);
+    align-items: flex-start;
+  }
+  .task:last-child { border-bottom: none; }
+  .task-icon {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--grad-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+  .task-text {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.5;
+    padding-top: 4px;
+  }
+  .task-text b {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .task-text span {
+    display: block;
+    font-size: 12px;
+    color: var(--mute);
+    margin-top: 2px;
+  }
+
+  /* ====== ROUTINE ====== */
+  .routine {
+    background: linear-gradient(135deg, rgba(255, 45, 127, .04), rgba(180, 123, 255, .04));
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    padding: 4px;
+    margin-bottom: 16px;
+  }
+  .routine-slot {
+    padding: 18px 20px;
+    border-bottom: 1px dashed var(--glass-border);
+  }
+  .routine-slot:last-child { border-bottom: none; }
+  .routine-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .routine-time {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .routine-dur {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--pink);
+    font-weight: 700;
+  }
+  .check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    font-size: 13.5px;
+  }
+  .check-box {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--pink);
+    border-radius: 6px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .check-box::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 5px;
+    width: 4px; height: 8px;
+    border-right: 2px solid var(--pink);
+    border-bottom: 2px solid var(--pink);
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  .check.done .check-box { background: var(--pink); }
+  .check.done .check-box::after { border-color: white; opacity: 1; }
+
+  /* ====== TEMPLATES ====== */
+  .template {
+    background: var(--cream);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-soft);
+  }
+  .template-label {
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    color: var(--pink);
+    font-weight: 700;
+    background: var(--pink-soft);
+    padding: 5px 10px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+  }
+  .template h4 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .template h4 em { font-style: italic; color: var(--pink); }
+  .template-body {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--bg-soft);
+    padding: 14px 16px;
+    border-radius: 16px;
+    border-left: 3px solid var(--pink);
+  }
+  .template-body .var {
+    background: var(--pink-soft);
+    color: var(--pink);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12.5px;
+  }
+  .template-body p { margin-bottom: 8px; }
+  .template-body p:last-child { margin-bottom: 0; }
+  .template-body .signoff {
+    margin-top: 10px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  /* ====== PIÈGES ====== */
+  .pit {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    margin-bottom: 10px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .pit-x {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--pink-soft);
+    color: var(--pink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .pit b { font-weight: 700; }
+
+  /* ====== MANTRA ====== */
+  .mantra {
+    margin: 48px 0 24px;
+    padding: 36px 28px;
+    background: var(--grad-chrome);
+    border-radius: 32px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-pink);
+  }
+  .mantra::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -20%;
+    width: 100%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,.2), transparent 60%);
+  }
+  .mantra-mark {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 80px;
+    line-height: 0;
+    position: absolute;
+    top: 40px; right: 24px;
+    color: rgba(255, 255, 255, .25);
+  }
+  .mantra-text {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    line-height: 1.3;
+    letter-spacing: -.01em;
+    position: relative;
+    z-index: 1;
+  }
+  .mantra-text em { font-style: italic; }
+  .mantra-sign {
+    margin-top: 18px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    font-weight: 700;
+    opacity: .8;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ====== FOOTER ====== */
+  footer {
+    text-align: center;
+    padding: 24px 0;
+    font-size: 11px;
+    color: var(--mute);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  footer .heart {
+    color: var(--pink);
+    font-size: 14px;
+  }
+
+  /* ====== Scroll reveal ====== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: reveal .6s ease forwards;
+  }
+  @keyframes reveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal:nth-child(1) { animation-delay: .05s; }
+  .reveal:nth-child(2) { animation-delay: .15s; }
+  .reveal:nth-child(3) { animation-delay: .25s; }
+  .reveal:nth-child(4) { animation-delay: .35s; }
+  .reveal:nth-child(5) { animation-delay: .45s; }
+
+  /* Tablet / Desktop */
+  @media (min-width: 600px) {
+    .container { padding: 40px 32px 100px; }
+    .phase { padding: 28px 26px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <section class="hero reveal">
+      <div class="badge">
+        <span class="dot"></span>
+        Plan personnel · 30 jours
+      </div>
+      <h1>Hello <span class="you">Chirine</span> ✦</h1>
+      <p class="lead">
+        Voici ta feuille de route pour signer ton <strong>alternance BTS SAM</strong> avant mi-juin. Tout est calibré pour toi : trilingue, organisée, prête à sprinter.
+      </p>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="stat-num">30</div>
+        <div class="stat-lbl">jours</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">200</div>
+        <div class="stat-lbl">contacts</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1</div>
+        <div class="stat-lbl">contrat</div>
+      </div>
+    </div>
+
+    <!-- ============ ROADMAP ============ -->
+    <div class="section-head">
+      <span class="nb">✦</span>
+      <span class="title">La roadmap</span>
+      <span class="line"></span>
+    </div>
+
+    <!-- PHASE 1 -->
+    <article class="phase reveal">
+      <div class="phase-top">
+        <div class="phase-num">01</div>
+        <div class="phase-tag">Semaine 1</div>
+      </div>
+      <h3 class="phase-title">Préparer tes <em>armes</em></h3>
+      <p class="phase-goal">Objectif : avoir <strong>tout prêt en 7 jours</strong> pour ne plus jamais perdre de temps après.</p>
+
+      <div class="task">
+        <div class="task-icon">📄</div>
+        <div class="task-text">
+          <b>Finaliser CV + lettre de motivation</b>
+          <span>Remplir les placeholders, imprimer en PDF, version FR + EN.</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">💼</div>
+        <div class="task-text">
+          <b>Booster ton LinkedIn</b>
+          <span>Photo pro, titre « Étudiante BTS SAM · Trilingue FR/EN/IT », résumé court.</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">🏫</div>
+        <div class="task-text">
+          <b>S'inscrire au CFA</b>
+          <span>Demander la liste des entreprises partenaires qui recrutent.</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">🎯</div>
+        <div class="task-text">
+          <b>Lister 80 entreprises cibles</b>
+          <span>PME export FR–IT–UK, luxe, mode, hôtellerie, cabinets internationaux.</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">📝</div>
+        <div class="task-text">
+          <b>Préparer 2 modèles</b>
+          <span>Un mail-type + un message LinkedIn (voir templates plus bas).</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- PHASE 2 -->
+    <article class="phase reveal">
+      <div class="phase-top">
+        <div class="phase-num">02</div>
+        <div class="phase-tag">Semaine 2–3</div>
+      </div>
+      <h3 class="phase-title">Le <em>sprint</em> candidatures</h3>
+      <p class="phase-goal">Objectif : envoyer <strong>20 candidatures par jour</strong> pendant 10 jours = 200 contacts ciblés.</p>
+
+      <div class="task">
+        <div class="task-icon">📧</div>
+        <div class="task-text">
+          <b>10 mails directs par jour</b>
+          <span>Aux dirigeants ou RH des PME — pas aux adresses « contact@ ».</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">💬</div>
+        <div class="task-text">
+          <b>10 DMs LinkedIn par jour</b>
+          <span>Toujours personnalisés (jamais copier-coller le même message).</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">🔁</div>
+        <div class="task-text">
+          <b>Relance systématique à J+4</b>
+          <span>50% des réponses positives viennent de la relance. Ne saute jamais.</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">📲</div>
+        <div class="task-text">
+          <b>Activer ton réseau perso</b>
+          <span>Message à famille, amis, anciens profs, anciens jobs.</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">🌐</div>
+        <div class="task-text">
+          <b>Postuler aussi en ligne</b>
+          <span>Studapart · 1jeune1solution · Hellowork · Indeed · LinkedIn Jobs.</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- PHASE 3 -->
+    <article class="phase reveal">
+      <div class="phase-top">
+        <div class="phase-num">03</div>
+        <div class="phase-tag">Semaine 3–4</div>
+      </div>
+      <h3 class="phase-title"><em>Convertir</em> & signer</h3>
+      <p class="phase-goal">Objectif : décrocher 3–5 entretiens, en convertir un en <strong>contrat signé</strong>.</p>
+
+      <div class="task">
+        <div class="task-icon">🎤</div>
+        <div class="task-text">
+          <b>Préparer ton pitch en 60 secondes</b>
+          <span>Qui tu es, d'où tu viens, ce que tu cherches, ce que tu apportes.</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">❓</div>
+        <div class="task-text">
+          <b>Préparer 5 questions intelligentes</b>
+          <span>Sur les missions, l'équipe, les enjeux — montre ton intérêt.</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">✨</div>
+        <div class="task-text">
+          <b>Tenue pro, propre, soignée</b>
+          <span>Sobre, juste à toi. Pas besoin de tailleur strict pour une PME.</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">💌</div>
+        <div class="task-text">
+          <b>Mail de remerciement après chaque entretien</b>
+          <span>Le soir même. Court, sincère, professionnel.</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="task-icon">✍️</div>
+        <div class="task-text">
+          <b>Négocier ton contrat</b>
+          <span>Rythme, missions, salaire d'alternance. Tout se discute.</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ ROUTINE ============ -->
+    <div class="section-head">
+      <span class="nb">✦</span>
+      <span class="title">Ta routine quotidienne</span>
+      <span class="line"></span>
+    </div>
+
+    <div class="routine reveal">
+      <div class="routine-slot">
+        <div class="routine-head">
+          <div class="routine-time">Matin</div>
+          <div class="routine-dur">1 h</div>
+        </div>
+        <div class="check"><div class="check-box"></div>Identifier 10 nouvelles entreprises</div>
+        <div class="check"><div class="check-box"></div>Trouver le bon contact (dirigeant / RH)</div>
+        <div class="check"><div class="check-box"></div>Préparer les mails personnalisés</div>
+      </div>
+
+      <div class="routine-slot">
+        <div class="routine-head">
+          <div class="routine-time">Après-midi</div>
+          <div class="routine-dur">1 h</div>
+        </div>
+        <div class="check"><div class="check-box"></div>Envoyer les 10 mails</div>
+        <div class="check"><div class="check-box"></div>Envoyer 10 DMs LinkedIn</div>
+        <div class="check"><div class="check-box"></div>Postuler à 2–3 offres en ligne</div>
+      </div>
+
+      <div class="routine-slot">
+        <div class="routine-head">
+          <div class="routine-time">Soir</div>
+          <div class="routine-dur">15 min</div>
+        </div>
+        <div class="check"><div class="check-box"></div>Mettre à jour ton tableau de suivi</div>
+        <div class="check"><div class="check-box"></div>Relancer les contacts J+4</div>
+        <div class="check"><div class="check-box"></div>Préparer la journée de demain</div>
+      </div>
+    </div>
+
+    <!-- ============ TEMPLATES ============ -->
+    <div class="section-head">
+      <span class="nb">✦</span>
+      <span class="title">Tes templates magiques</span>
+      <span class="line"></span>
+    </div>
+
+    <div class="template reveal">
+      <div class="template-label">Mail direct</div>
+      <h4>Le <em>mail</em> qui ouvre les portes</h4>
+      <div class="template-body">
+        <p><b>Objet :</b> Alternance BTS SAM · Trilingue FR/EN/IT · Septembre 2026</p>
+        <p>Bonjour <span class="var">[Prénom]</span>,</p>
+        <p>Étudiante trilingue (français, anglais, italien), je prépare un BTS Support à l'Action Managériale en alternance pour la rentrée de septembre 2026.</p>
+        <p>Votre <span class="var">[activité / positionnement]</span> a particulièrement retenu mon attention. Je serais ravie de mettre mes compétences — rédaction, organisation, langues — au service de votre équipe.</p>
+        <p>Auriez-vous 15 minutes la semaine prochaine pour un échange ?</p>
+        <p class="signoff">Belle journée,<br>Chirine Kadi</p>
+      </div>
+    </div>
+
+    <div class="template reveal">
+      <div class="template-label">LinkedIn DM</div>
+      <h4>Le <em>message</em> LinkedIn qui répond</h4>
+      <div class="template-body">
+        <p>Bonjour <span class="var">[Prénom]</span>,</p>
+        <p>Je me permets de vous contacter car <span class="var">[raison précise — votre profil, votre entreprise, un post]</span> m'a interpellée.</p>
+        <p>Je cherche une alternance BTS SAM pour septembre 2026 et je pense que mon profil — trilingue FR/EN/IT, rigoureuse, motivée — pourrait apporter de la valeur à votre équipe.</p>
+        <p>Possible d'échanger 10 minutes cette semaine ?</p>
+        <p class="signoff">Merci 🤍<br>Chirine</p>
+      </div>
+    </div>
+
+    <!-- ============ PIÈGES ============ -->
+    <div class="section-head">
+      <span class="nb">✦</span>
+      <span class="title">Les pièges à éviter</span>
+      <span class="line"></span>
+    </div>
+
+    <div class="reveal">
+      <div class="pit">
+        <span class="pit-x">✕</span>
+        <div><b>Candidatures génériques.</b> Une mauvaise candidature personnalisée bat dix bonnes copiées-collées.</div>
+      </div>
+      <div class="pit">
+        <span class="pit-x">✕</span>
+        <div><b>Attendre passivement.</b> Pas de réponse à J+4 = relance. Toujours.</div>
+      </div>
+      <div class="pit">
+        <span class="pit-x">✕</span>
+        <div><b>Se limiter aux offres publiées.</b> 80% des alternances ne sont jamais en ligne.</div>
+      </div>
+      <div class="pit">
+        <span class="pit-x">✕</span>
+        <div><b>Cacher ta réorientation.</b> Au contraire : montre que c'est un choix mûri, pas un échec.</div>
+      </div>
+      <div class="pit">
+        <span class="pit-x">✕</span>
+        <div><b>Sous-vendre ton trilinguisme.</b> Le FR/EN/IT est ton arme #1. Mets-le en titre, en signature, partout.</div>
+      </div>
+    </div>
+
+    <!-- ============ MANTRA ============ -->
+    <div class="mantra reveal">
+      <div class="mantra-mark">"</div>
+      <p class="mantra-text">
+        Tu es <em>trilingue</em>. Tu sais rédiger. Tu sais t'organiser. Tu es exactement ce que les PME cherchent. <em>Reste régulière. Sois fière. Signe.</em>
+      </p>
+      <div class="mantra-sign">— Ton plan, Chirine ✦</div>
+    </div>
+
+    <footer>
+      Made with <span class="heart">♥</span> pour Chirine Kadi
+    </footer>
+
+  </div>
+
+</body>
+</html>
